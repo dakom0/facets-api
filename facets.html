@@ -1,0 +1,59 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.3.3/webcomponents-lite.js"></script>
+<link rel="import" href="https://raw.githubusercontent.com/PAIR-code/facets/1.0.0/facets-dist/facets-jupyter.html">
+<facets-dive id="elem1" height="600"></facets-dive>
+
+<facets-overview id="elem2"></facets-overview>
+​
+<script>
+    document.querySelector("#elem2").protoInput = "{protostr}";
+    document.querySelector("#elem1").style.display = "none";
+
+    var string = '';
+    var jsonarray = '';
+
+    function overviewFunction()
+    // When you click the button, sends a request to server, returns base64 string (string below) and set that string into the protoInput.
+    // Return a string, and set protoInput equal to that string
+    {
+//         let headers = new Headers();
+
+//         headers['Access-Control-Allow-Origin'] = '*'
+// headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+// headers['Access-Control-Request-Method'] = '*'
+// headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+
+        fetch('http://localhost:9000/string')
+            .then(response => response.json())
+            .then(data => {
+                string = data[0].proto;
+                document.querySelector("#elem2").protoInput = string
+                console.log(string)
+            }).catch(function(error) {
+    console.log('Request failed', error)
+});
+
+    }
+
+    function diveFunction()
+    // When you click the button, sends a request to server, returns a json array
+    {
+
+
+        async function fetchJSON() {
+            const response = await fetch('http://localhost:9000/string');
+            const protodata = await response.json();
+            return protodata;
+        }
+
+        fetchJSON().then(protodata => {
+            jsonarray = protodata[0].data
+            document.querySelector("#elem1").data = jsonarray;
+            document.querySelector("#elem1").style.display = "flex";
+            console.log(jsonarray)
+        });
+
+    }
+</script>
+​
+<button onclick="overviewFunction()">Facets Overview</button>
+<button onclick="diveFunction()">Facets Dive</button>
