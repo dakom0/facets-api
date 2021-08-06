@@ -8,6 +8,8 @@
     document.querySelector("#elem2").protoInput = "{protostr}";
     document.querySelector("#elem1").style.display = "none";
 
+    let headers = new Headers();
+
     var string = '';
     var jsonarray = '';
 
@@ -15,22 +17,23 @@
     // When you click the button, sends a request to server, returns base64 string (string below) and set that string into the protoInput.
     // Return a string, and set protoInput equal to that string
     {
-//         let headers = new Headers();
 
-//         headers['Access-Control-Allow-Origin'] = '*'
-// headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
-// headers['Access-Control-Request-Method'] = '*'
-// headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-
-        fetch('http://localhost:9000/string')
+        fetch('http://localhost:9000/string', {
+            method: "GET",
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 string = data[0].proto;
                 document.querySelector("#elem2").protoInput = string
                 console.log(string)
-            }).catch(function(error) {
-    console.log('Request failed', error)
-});
+            }).catch(function (error) {
+                console.log('Request failed', error)
+            });
 
     }
 
@@ -40,8 +43,19 @@
 
 
         async function fetchJSON() {
-            const response = await fetch('http://localhost:9000/string');
+            const response = await fetch('http://localhost:9000/string',
+                {
+                    method: "GET",
+                    headers: {
+                        "Access-Control-Allow-Origin": "http://127.0.0.1:5501/",
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        "Access-Control-Allow-Headers": "*",
+                        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
+                    }
+                });
             const protodata = await response.json();
+            console.log(protodata)
             return protodata;
         }
 
