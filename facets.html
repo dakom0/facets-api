@@ -18,7 +18,7 @@
     // Return a string, and set protoInput equal to that string
     {
 
-        fetch('http://localhost:9000/string', {
+        fetch('http://127.0.0.1:8000/', {
             method: "GET",
             headers: {
                 "Access-Control-Allow-Origin": "*",
@@ -43,7 +43,7 @@
 
 
         async function fetchJSON() {
-            const response = await fetch('http://localhost:9000/string',
+            const response = await fetch('http://127.0.0.1:8000/',
                 {
                     method: "GET",
                     headers: {
