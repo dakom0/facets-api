@@ -18,17 +18,13 @@
     // Return a string, and set protoInput equal to that string
     {
 
-        fetch('http://127.0.0.1:8000/', {
+        fetch('http://127.0.0.1:8000/vaex_proto', {
             method: "GET",
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
+            
         })
             .then(response => response.json())
             .then(data => {
-                string = data[0].proto;
+                string = data.item;
                 document.querySelector("#elem2").protoInput = string
                 console.log(string)
             }).catch(function (error) {
@@ -43,16 +39,16 @@
 
 
         async function fetchJSON() {
-            const response = await fetch('http://127.0.0.1:8000/',
+            const response = await fetch('http://127.0.0.1:8000/vaex_data',
                 {
                     method: "GET",
-                    headers: {
-                        "Access-Control-Allow-Origin": "http://127.0.0.1:5501/",
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        "Access-Control-Allow-Headers": "*",
-                        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
-                    }
+                    // headers: {
+                    //     "Access-Control-Allow-Origin": "http://127.0.0.1:5501/",
+                    //     'Content-Type': 'application/json',
+                    //     'Accept': 'application/json',
+                    //     "Access-Control-Allow-Headers": "*",
+                    //     "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
+                    // }
                 });
             const protodata = await response.json();
             console.log(protodata)
@@ -60,7 +56,7 @@
         }
 
         fetchJSON().then(protodata => {
-            jsonarray = protodata[0].data
+            jsonarray = protodata.item;
             document.querySelector("#elem1").data = jsonarray;
             document.querySelector("#elem1").style.display = "flex";
             console.log(jsonarray)
