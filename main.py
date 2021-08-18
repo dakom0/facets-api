@@ -6,6 +6,13 @@ from fastapi import FastAPI
 
 from fastapi.middleware.cors import CORSMiddleware
 
+# Load UCI census train and test data into dataframes.
+
+from facets_overview.generic_feature_statistics_generator import GenericFeatureStatisticsGenerator
+
+# Create the feature stats for the datasets and stringify it.
+# Display the facets overview visualization for this data
+
 app = FastAPI()
 
 origins = [
@@ -15,8 +22,7 @@ origins = [
     "http://127.0.0.1:8000/",
 ]
 
-
-
+# Protostring for Faceets Overview
 @app.get("/vaex_proto")
 def read_data():
     return {"item": core.vaex_proto()}

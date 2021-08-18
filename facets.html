@@ -42,13 +42,7 @@
             const response = await fetch('http://127.0.0.1:8000/vaex_data',
                 {
                     method: "GET",
-                    // headers: {
-                    //     "Access-Control-Allow-Origin": "http://127.0.0.1:5501/",
-                    //     'Content-Type': 'application/json',
-                    //     'Accept': 'application/json',
-                    //     "Access-Control-Allow-Headers": "*",
-                    //     "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
-                    // }
+
                 });
             const protodata = await response.json();
             console.log(protodata)
@@ -57,9 +51,24 @@
 
         fetchJSON().then(protodata => {
             jsonarray = protodata.item;
-            document.querySelector("#elem1").data = jsonarray;
+            // str =jsonarray.replace(/\//g,"")
+            str = jsonarray.replace(/\\n/g, "\\n")  
+               .replace(/\\'/g, "\\'")
+               .replace(/\\"/g, '\\"')
+               .replace(/\\&/g, "\\&")
+               .replace(/\\r/g, "\\r")
+               .replace(/\\t/g, "\\t")
+               .replace(/\\b/g, "\\b")
+               .replace(/\\f/g, "\\f");
+            // remove non-printable and other non-valid JSON chars
+            str = jsonarray.replace(/[\u0000-\u0019]+/g,""); 
+
+            console.log(str)
+            parsed = JSON.parse(str)
+            
+            console.log(parsed)
+            document.querySelector("#elem1").data = parsed;
             document.querySelector("#elem1").style.display = "flex";
-            console.log(jsonarray)
         });
 
     }
