@@ -39,3 +39,12 @@ open the html file on your browser
 # Run backend (:5001)
 uvicorn main:app --reload
 ```
+
+## Endpoints (Swagger UI)
+```
+# Run backend (:5001)
+
+uvicorn main:app --reload
+
+Go to http://127.0.0.1:5001/docs
+```
