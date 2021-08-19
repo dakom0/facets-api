@@ -2,10 +2,6 @@
 
 > Facets Overview and Dive visualization built using a HTML page and Fast API.
 
-<<<<<<< HEAD
-=======
-![Alt text](https://github.com/dakom0/facets-api/edit/master/Screen Shot 2021-08-10 at 9.42.04 AM.png)
->>>>>>> d377607bb0d84b8baf4ebae861c45341024e061a
 
 ## Facets Overview
 Overview gives a high-level view of one or more data sets. It produces a visual feature-by-feature statistical analysis, and can also be used to compare statistics across two or more data sets. 
