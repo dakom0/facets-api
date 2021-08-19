@@ -1,7 +1,8 @@
 # Facets API
 
 > Facets Overview and Dive visualization built using a HTML page and Fast API
-/Users/mac/sei/sandbox/facets-api/Screen Shot 2021-08-10 at 9.42.04 AM.png
+
+![Alt text](/relative/Screen Shot 2021-08-10 at 9.42.04 AM.png "Optional Title")
 
 ## Facets Overview
 Overview gives a high-level view of one or more data sets. It produces a visual feature-by-feature statistical analysis, and can also be used to compare statistics across two or more data sets. 
